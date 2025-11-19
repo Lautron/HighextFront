@@ -1,8 +1,8 @@
 export const FORMAT_OPTIONS = {
-  'Level 1 Header': { format: '# {}', behaviour: 'join', type: 'header' },
-  'Level 2 Header': { format: '## {}', behaviour: 'join', type: 'header' },
-  'Level 3 Header': { format: '### {}', behaviour: 'join', type: 'header' },
-  'Level 4 Header': { format: '#### {}', behaviour: 'join', type: 'header' },
+  'Level 1 Header': { format: '\n# {}', behaviour: 'join', type: 'header' },
+  'Level 2 Header': { format: '\n## {}', behaviour: 'join', type: 'header' },
+  'Level 3 Header': { format: '\n### {}', behaviour: 'join', type: 'header' },
+  'Level 4 Header': { format: '\n#### {}', behaviour: 'join', type: 'header' },
   'Bold Text': { format: '**{}**', behaviour: 'join', type: 'content' },
   'Italic Text': { format: '*{}*', behaviour: 'join', type: 'content' },
   'Blockquote': { format: '> {}', behaviour: 'join', type: 'content' },
