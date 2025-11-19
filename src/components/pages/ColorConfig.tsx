@@ -8,16 +8,22 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+import {
+    Button
+} from "@/components/ui/button"
+
 interface ColorConfigProps {
   colors: string[];
   colorConfig: ColorFormatConfig;
   onColorConfigChange: (color: string, newFormat: string) => void;
+  onSubmit: () => void;
 }
 
 const ColorConfig: React.FC<ColorConfigProps> = ({
   colors,
   colorConfig,
   onColorConfigChange,
+  onSubmit
 }) => {
   return (
     <div>
@@ -36,8 +42,8 @@ const ColorConfig: React.FC<ColorConfigProps> = ({
               <SelectValue placeholder="Select a format" />
             </SelectTrigger>
             <SelectContent>
-              {Object.entries(FORMAT_OPTIONS).map(([key, val]) => (
-                <SelectItem key={key} value={val}>
+              {Object.keys(FORMAT_OPTIONS).map((key) => (
+                <SelectItem key={color + key} value={key}>
                   {key}
                 </SelectItem>
               ))}
@@ -45,6 +51,7 @@ const ColorConfig: React.FC<ColorConfigProps> = ({
           </Select>
         </div>
       ))}
+    <Button onClick={onSubmit}>Send!</Button>
     </div>
   );
 };
