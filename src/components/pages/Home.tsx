@@ -2,17 +2,21 @@ import { useState } from 'react';
 import FileUpload from "@/components/pages/FileUpload";
 import ColorConfig from "@/components/pages/ColorConfig";
 import ResultsDisplay from "@/components/pages/ResultsDisplay";
-import { analyzePdf } from "@/lib/api";
-import { FORMAT_OPTIONS, type ColorFormatConfig } from '@/lib/constants';
+import { analyzePdf, extractText } from "@/lib/api";
+import {
+    FORMAT_OPTIONS,
+    type ColorFormatConfig,
+} from '@/lib/constants';
 
 const Home = () => {
     const [pdfFile, setFile] = useState<File>()
     const [colors, setColors] = useState<string[]>()
     const [colorConfig, setColorConfig] = useState<ColorFormatConfig | undefined>()
+    const [markdown, setMarkdown] = useState<string>("")
 
     function handleColorConfigInitialState(fetchedColors: string[]) {
         const initialState: ColorFormatConfig = {};
-        const values = Object.values(FORMAT_OPTIONS);
+        const values = Object.keys(FORMAT_OPTIONS);
         fetchedColors.forEach((color, ind) => {
           initialState[color] =
             ind < values.length ? values[ind] : values[values.length - 1];
@@ -37,6 +41,15 @@ const Home = () => {
       });
     };
 
+    const handleConfigSubmit = async () => {
+        if (pdfFile === undefined || colorConfig === undefined) {
+            console.error("pdfFile or colorConfig are undefined")
+            return
+        }
+        const markdown = await extractText(pdfFile, colorConfig)
+        setMarkdown(markdown)
+    }
+
     return (
         <div className="container mx-auto p-4">
             <h1 className="text-3xl font-bold text-center my-8">PDF Highlighter Extractor</h1>
@@ -46,9 +59,10 @@ const Home = () => {
                 colors={colors}
                 colorConfig={colorConfig}
                 onColorConfigChange={handleColorConfigChange}
+                onSubmit={handleConfigSubmit}
               />
             )}
-            <ResultsDisplay />
+            {markdown !== "" && <ResultsDisplay markdown={markdown}/>}
         </div>
     );
 };

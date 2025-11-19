@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ResultsDisplay = () => {
-  return (
-    <div>
-      {/* Results display UI will go here */}
-    </div>
-  );
+interface ResultsDisplayProps {
+  markdown: string;
+}
+
+const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ markdown }) => {
+  return <div>{markdown}</div>;
 };
 
 export default ResultsDisplay;
