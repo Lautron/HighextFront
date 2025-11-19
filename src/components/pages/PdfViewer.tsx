@@ -24,11 +24,13 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ pdfUrl }) => {
   }
 
   return (
-    <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
-      {Array.from(new Array(numPages), (el, index) => (
-        <Page key={`page_${index + 1}`} pageNumber={index + 1} />
-      ))}
-    </Document>
+    <div className="flex justify-center">
+      <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess} className="flex flex-col gap-4">
+        {Array.from(new Array(numPages), (el, index) => (
+          <Page key={`page_${index + 1}`} pageNumber={index + 1} className="shadow-lg border rounded-sm overflow-hidden" />
+        ))}
+      </Document>
+    </div>
   );
 };
 

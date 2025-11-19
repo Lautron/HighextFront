@@ -11,6 +11,14 @@ import {
 import {
     Button
 } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 interface ColorConfigProps {
   colors: string[];
@@ -26,33 +34,43 @@ const ColorConfig: React.FC<ColorConfigProps> = ({
   onSubmit
 }) => {
   return (
-    <div>
-      <h1>This is the color config!</h1>
-      {colors.map((color) => (
-        <div
-          key={color}
-          style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}
-        >
-          <span style={{ background: color }}>{color}</span>
-          <Select
-            value={colorConfig[color]}
-            onValueChange={(value) => onColorConfigChange(color, value)}
+    <Card className="w-full max-w-2xl mx-auto mt-8 text-left">
+      <CardHeader>
+        <CardTitle>Configure Extraction</CardTitle>
+        <CardDescription>Map your PDF highlight colors to Markdown formats.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {colors.map((color) => (
+          <div
+            key={color}
+            className="flex items-center justify-between p-3 border rounded-lg bg-card"
           >
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select a format" />
-            </SelectTrigger>
-            <SelectContent>
-              {Object.keys(FORMAT_OPTIONS).map((key) => (
-                <SelectItem key={color + key} value={key}>
-                  {key}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      ))}
-    <Button onClick={onSubmit}>Send!</Button>
-    </div>
+            <div className="flex items-center gap-3">
+              <div className="h-8 w-8 rounded-full border shadow-sm" style={{ backgroundColor: color }} />
+              <code className="text-xs font-mono bg-muted px-2 py-1 rounded text-muted-foreground uppercase">{color}</code>
+            </div>
+            <Select
+              value={colorConfig[color]}
+              onValueChange={(value) => onColorConfigChange(color, value)}
+            >
+              <SelectTrigger className="w-[200px]">
+                <SelectValue placeholder="Select a format" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.keys(FORMAT_OPTIONS).map((key) => (
+                  <SelectItem key={color + key} value={key}>
+                    {key}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        ))}
+      </CardContent>
+      <CardFooter>
+        <Button onClick={onSubmit} className="w-full" size="lg">Extract Text</Button>
+      </CardFooter>
+    </Card>
   );
 };
 

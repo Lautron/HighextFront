@@ -51,8 +51,12 @@ const Home = () => {
     }
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold text-center my-8">PDF Highlighter Extractor</h1>
+        <div className="container mx-auto py-12 px-4 max-w-6xl">
+            <div className="text-center mb-12">
+                <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">HighExt</h1>
+                <p className="text-xl text-muted-foreground">Extract and format highlighted text from your PDFs automatically.</p>
+            </div>
+            
             <FileUpload onFileSelect={handleFileSelect} />
             {colors !== undefined && colorConfig !== undefined && (
               <ColorConfig
