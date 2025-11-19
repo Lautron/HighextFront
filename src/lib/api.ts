@@ -1,4 +1,5 @@
 import axios from "axios";
+import { type ColorFormatConfig } from "./constants";
 
 const API_BASE_URL = "http://127.0.0.1:8000/api/v1";
 
@@ -19,7 +20,7 @@ export const analyzePdf = async (file: File): Promise<string[]> => {
   return response.data.colors;
 };
 
-export const extractText = async (file: File, config: any): Promise<string> => {
+export const extractText = async (file: File, config: ColorFormatConfig): Promise<string> => {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("config", JSON.stringify(config));
