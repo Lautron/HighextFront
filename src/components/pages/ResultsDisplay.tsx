@@ -5,7 +5,7 @@ import { convertMarkdownToPdf } from '../../lib/api';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { FileText, FileDown, Loader2 } from 'lucide-react';
+import { FileText, FileDown, Loader2, Download } from 'lucide-react';
 
 interface ResultsDisplayProps {
   markdown: string;
@@ -28,6 +28,16 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ markdown }) => {
     }
   };
 
+  const handleDownloadPdf = () => {
+    if (!pdfUrl) return;
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = 'extracted_highlights.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <Card className="w-full max-w-5xl mx-auto mt-8">
       <CardHeader className="flex flex-row items-center justify-between border-b pb-4">
@@ -35,10 +45,18 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ markdown }) => {
           <FileText className="h-5 w-5" />
           Results
         </CardTitle>
-        <Button onClick={handleGeneratePdf} disabled={isGenerating} variant="outline">
-          {isGenerating ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <FileDown className="mr-2 h-4 w-4" />}
-          Generate PDF
-        </Button>
+        <div className="flex gap-2">
+          {pdfUrl && (
+            <Button onClick={handleDownloadPdf} variant="outline">
+              <Download className="mr-2 h-4 w-4" />
+              Download PDF
+            </Button>
+          )}
+          <Button onClick={handleGeneratePdf} disabled={isGenerating}>
+            {isGenerating ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <FileDown className="mr-2 h-4 w-4" />}
+            Generate PDF
+          </Button>
+        </div>
       </CardHeader>
       <CardContent className="p-6">
         <Tabs defaultValue="markdown" className="w-full">
