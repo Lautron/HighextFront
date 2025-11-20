@@ -20,7 +20,7 @@ const Landing = () => {
           Stop manually copying text. Automatically extract, categorize, and format your PDF highlights into structured Markdown or clean documents based on color.
         </p>
         <div className="flex gap-4">
-          <Button size="lg" onClick={() => navigate('/app')} className="h-12 px-8 text-base font-bold border-2 border-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button size="xl" variant="shiny" onClick={() => navigate('/app')}>
             Get Started <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>

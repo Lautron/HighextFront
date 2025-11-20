@@ -47,7 +47,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ markdown }) => {
         </CardTitle>
         <div className="flex gap-2">
           {pdfUrl && (
-            <Button onClick={handleDownloadPdf} variant="outline">
+            <Button onClick={handleDownloadPdf}>
               <Download className="mr-2 h-4 w-4" />
               Download PDF
             </Button>

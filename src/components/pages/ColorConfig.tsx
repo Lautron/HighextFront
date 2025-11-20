@@ -67,8 +67,8 @@ const ColorConfig: React.FC<ColorConfigProps> = ({
           </div>
         ))}
       </CardContent>
-      <CardFooter>
-        <Button onClick={onSubmit} className="w-full" size="lg">Extract Text</Button>
+      <CardFooter className='flex justify-center'>
+        <Button onClick={onSubmit}>Extract Text</Button>
       </CardFooter>
     </Card>
   );
