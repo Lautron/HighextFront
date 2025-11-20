@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, FileText, Palette, FileDown, Zap } from 'lucide-react';
+import { Highlighter } from '@/components/ui/highlighter';
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Landing = () => {
       <section className="container mx-auto px-4 py-24 text-center flex flex-col items-center max-w-4xl">
 
         <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl mb-6 text-foreground pb-2">
-          Master Your <span className="relative inline-block px-2"><span className="absolute inset-0 bg-primary -skew-y-2 transform rounded-sm -z-10 opacity-80"></span>PDF Highlights</span>
+          Master Your <Highlighter color="#93c5fd">PDF Highlights</Highlighter>
         </h1>
         <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
           Stop manually copying text. Automatically extract, categorize, and format your PDF highlights into structured Markdown or clean documents based on color.
@@ -28,7 +29,7 @@ const Landing = () => {
       {/* How it Works Section */}
       <section className="py-20 container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">From PDF to Summary in Seconds</h2>
+          <h2 className="text-3xl font-bold tracking-tight mb-4">From PDF to <Highlighter color="#fef08a">Summary</Highlighter> in Seconds</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             You focus on reading and learning. Let us handle the note-taking organization.
           </p>
@@ -73,7 +74,7 @@ const Landing = () => {
       {/* Features Section */}
       <section className="bg-muted/50 py-20 border-y border-border">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12 tracking-tight">Why use HighExt?</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 tracking-tight">Why use <Highlighter action="underline" color="#fdba74">HighExt?</Highlighter></h2>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               <CardHeader>
