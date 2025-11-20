@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import FileUpload from "@/components/pages/FileUpload";
 import ColorConfig from "@/components/pages/ColorConfig";
 import ResultsDisplay from "@/components/pages/ResultsDisplay";
@@ -53,7 +54,9 @@ const Home = () => {
     return (
         <div className="container mx-auto py-12 px-4 max-w-6xl">
             <div className="text-center mb-12">
-                <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">HighExt</h1>
+            <Link to="/" className="hover:opacity-80 transition-opacity">
+                    <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">HighExt</h1>
+                </Link>
                 <p className="text-xl text-muted-foreground">Extract and format highlighted text from your PDFs automatically.</p>
             </div>
             
