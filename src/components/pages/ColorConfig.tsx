@@ -6,11 +6,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from '@/components/ui/select';
 
-import {
-    Button
-} from "@/components/ui/button"
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -18,7 +16,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from '@/components/ui/card';
 
 interface ColorConfigProps {
   colors: string[];
@@ -31,13 +29,15 @@ const ColorConfig: React.FC<ColorConfigProps> = ({
   colors,
   colorConfig,
   onColorConfigChange,
-  onSubmit
+  onSubmit,
 }) => {
   return (
     <Card className="w-full max-w-2xl mx-auto mt-8 text-left">
       <CardHeader>
         <CardTitle>Configure Extraction</CardTitle>
-        <CardDescription>Map your PDF highlight colors to Markdown formats.</CardDescription>
+        <CardDescription>
+          Map your PDF highlight colors to Markdown formats.
+        </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {colors.map((color) => (
@@ -46,8 +46,13 @@ const ColorConfig: React.FC<ColorConfigProps> = ({
             className="flex items-center justify-between p-3 border rounded-lg bg-card"
           >
             <div className="flex items-center gap-3">
-              <div className="h-8 w-8 rounded-full border shadow-sm" style={{ backgroundColor: color }} />
-              <code className="text-xs font-mono bg-muted px-2 py-1 rounded text-muted-foreground uppercase">{color}</code>
+              <div
+                className="h-8 w-8 rounded-full border-1 border-black shadow-sm"
+                style={{ backgroundColor: color }}
+              />
+              <code className="text-xs font-mono bg-muted px-2 py-1 rounded text-muted-foreground uppercase">
+                {color}
+              </code>
             </div>
             <Select
               value={colorConfig[color]}
@@ -67,7 +72,7 @@ const ColorConfig: React.FC<ColorConfigProps> = ({
           </div>
         ))}
       </CardContent>
-      <CardFooter className='flex justify-center'>
+      <CardFooter className="flex justify-center">
         <Button onClick={onSubmit}>Extract Text</Button>
       </CardFooter>
     </Card>
