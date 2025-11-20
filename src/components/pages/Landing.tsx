@@ -2,8 +2,99 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, FileText, Palette, FileDown, Zap } from 'lucide-react';
+import { ArrowRight, Palette, FileDown, Zap } from 'lucide-react';
 import { Highlighter } from '@/components/ui/highlighter';
+
+// "How it Works" Section
+const howItWorksSteps = [
+  {
+    number: "1",
+    bgColor: "bg-primary/30",
+    title: "Highlight",
+    description: "Annotate your PDFs with your favorite colors, just like you always have.",
+  },
+  {
+    number: "2",
+    bgColor: "bg-secondary",
+    title: "Upload",
+    description: "Upload your highlighted PDF to HighExt and let it work its magic.",
+  },
+  {
+    number: "3",
+    bgColor: "bg-accent",
+    title: "Export",
+    description: "Get perfectly formatted Markdown or a new PDF, categorized by your highlight colors.",
+  },
+];
+
+type HowItWorksStepProps = (typeof howItWorksSteps)[0];
+
+const HowItWorksStep: React.FC<HowItWorksStepProps> = ({ number, bgColor, title, description }) => (
+  <div className="flex flex-col items-center text-center bg-background p-4">
+    <div className={`h-24 w-24 rounded-full ${bgColor} flex items-center justify-center mb-6 border-4 border-foreground text-3xl font-black text-foreground shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]`}>
+      {number}
+    </div>
+    <h3 className="text-xl font-semibold mb-2">{title}</h3>
+    <p className="text-muted-foreground text-sm max-w-xs">{description}</p>
+  </div>
+);
+
+// "Features" Section
+const features = [
+  {
+    icon: <Zap className="h-10 w-10 text-foreground mb-2 fill-secondary" />,
+    title: "Smart Extraction",
+    description: "No more manual copy-pasting. HighExt intelligently pulls out all your highlights, saving you hours.",
+  },
+  {
+    icon: <Palette className="h-10 w-10 text-foreground mb-2 fill-primary" />,
+    title: "Color Mapping",
+    description: "Assign specific markdown formats to each highlight color, creating perfectly organized notes.",
+  },
+  {
+    icon: <FileDown className="h-10 w-10 text-foreground mb-2 fill-accent" />,
+    title: "Instant Export",
+    description: "Export your structured highlights as clean Markdown or a new, searchable PDF document.",
+  },
+];
+
+type FeatureCardProps = (typeof features)[0];
+
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => (
+  <Card className="bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+    <CardHeader>
+      {icon}
+      <CardTitle>{title}</CardTitle>
+    </CardHeader>
+    <CardContent>{description}</CardContent>
+  </Card>
+);
+
+// "Use Cases" Section
+const useCases = [
+  {
+    id: "students",
+    title: <>🎓 For Students</>,
+    description: "Turn 50-page textbook chapters into concise 5-page summaries. Perfect for creating Anki flashcards and reviewing for finals without re-reading the whole book.",
+    className: "bg-primary/20 shadow-[4px_4px_0px_0px_#93c5fd]",
+  },
+  {
+    id: "researchers",
+    title: <>🔬 For Researchers</>,
+    description: "Review bibliography efficiently. Color-code methodology, results, and key arguments, then extract them into a structured review document automatically.",
+    className: "bg-secondary/30 shadow-[4px_4px_0px_0px_#fef08a]",
+  },
+];
+
+type UseCaseCardProps = Omit<(typeof useCases)[0], 'id'>;
+
+const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, description, className }) => (
+  <div className={`p-8 rounded-xl border-2 border-foreground ${className}`}>
+    <h3 className="text-xl font-bold mb-3 flex items-center gap-2">{title}</h3>
+    <p className="text-muted-foreground">{description}</p>
+  </div>
+);
+
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -38,36 +129,9 @@ const Landing = () => {
         <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto relative">
           {/* Connecting Line (Desktop) */}
           <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-border -z-10" />
-
-          <div className="flex flex-col items-center text-center bg-background p-4">
-            <div className="h-24 w-24 rounded-full bg-primary/30 flex items-center justify-center mb-6 border-4 border-foreground text-3xl font-black text-foreground shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
-              1
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Highlight</h3>
-            <p className="text-muted-foreground text-sm max-w-xs">
-              Annotate your PDFs with your favorite colors, just like you always have.
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center text-center bg-background p-4">
-            <div className="h-24 w-24 rounded-full bg-secondary flex items-center justify-center mb-6 border-4 border-foreground text-3xl font-black text-foreground shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
-              2
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Upload</h3>
-            <p className="text-muted-foreground text-sm max-w-xs">
-              Upload your highlighted PDF to HighExt and let it work its magic.
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center text-center bg-background p-4">
-            <div className="h-24 w-24 rounded-full bg-accent flex items-center justify-center mb-6 border-4 border-foreground text-3xl font-black text-foreground shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
-              3
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Export</h3>
-            <p className="text-muted-foreground text-sm max-w-xs">
-              Get perfectly formatted Markdown or a new PDF, categorized by your highlight colors.
-            </p>
-          </div>
+          {howItWorksSteps.map((step) => (
+            <HowItWorksStep key={step.title} {...step} />
+          ))}
         </div>
       </section>
 
@@ -76,62 +140,26 @@ const Landing = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-3xl font-bold text-center mb-12 tracking-tight">Why use <Highlighter action="underline" color="#fdba74">HighExt?</Highlighter></h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <CardHeader>
-                <Zap className="h-10 w-10 text-foreground mb-2 fill-secondary" />
-                <CardTitle>Smart Extraction</CardTitle>
-              </CardHeader>
-              <CardContent>
-                No more manual copy-pasting. HighExt intelligently pulls out all your highlights, saving you hours.
-              </CardContent>
-            </Card>
+            {features.map((feature) => (
+              <FeatureCard key={feature.title} {...feature} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <Card className="bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <CardHeader>
-                <Palette className="h-10 w-10 text-foreground mb-2 fill-primary" />
-                <CardTitle>Color Mapping</CardTitle>
-              </CardHeader>
-              <CardContent>
-                Assign specific markdown formats to each highlight color, creating perfectly organized notes.
-              </CardContent>
-            </Card>
+      {/* Use Cases Section */}
+      <section className="py-24 container mx-auto px-4 text-center">
+        <h2 className="text-3xl font-bold mb-12 tracking-tight">Built for Knowledge Workers</h2>
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
+          {useCases.map((useCase) => (
+            <UseCaseCard key={useCase.id} title={useCase.title} description={useCase.description} className={useCase.className} />
+          ))}
+        </div>
+      </section>
 
-                        <Card className="bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                          <CardHeader>
-                            <FileDown className="h-10 w-10 text-foreground mb-2 fill-accent" />
-                            <CardTitle>Instant Export</CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            Export your structured highlights as clean Markdown or a new, searchable PDF document.
-                          </CardContent>
-                        </Card>                      </div>                   </div>
-                 </section>
-
-                 {/* Use Cases Section */}
-                 <section className="py-24 container mx-auto px-4 text-center">
-                   <h2 className="text-3xl font-bold mb-12 tracking-tight">Built for Knowledge Workers</h2>
-                   <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
-                     <div className="p-8 rounded-xl bg-primary/20 border-2 border-foreground shadow-[4px_4px_0px_0px_#93c5fd]">
-                       <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-                         🎓 For Students
-                       </h3>
-                       <p className="text-muted-foreground">
-                         Turn 50-page textbook chapters into concise 5-page summaries. Perfect for creating Anki flashcards and reviewing for finals without re-reading the whole book.
-                       </p>
-                     </div>
-                     <div className="p-8 rounded-xl bg-secondary/30 border-2 border-foreground shadow-[4px_4px_0px_0px_#fef08a]">
-                       <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-                         🔬 For Researchers
-                       </h3>
-                       <p className="text-muted-foreground">
-                         Review bibliography efficiently. Color-code methodology, results, and key arguments, then extract them into a structured review document automatically.
-                       </p>
-                     </div>
-                   </div>
-                 </section>
-
-                 {/* Footer */}
-                 <footer className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">        <p>© {new Date().getFullYear()} HighExt. Built for researchers and developers.</p>
+      {/* Footer */}
+      <footer className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
+        <p>© {new Date().getFullYear()} HighExt. Built for researchers and developers.</p>
       </footer>
     </div>
   );
