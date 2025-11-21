@@ -1,6 +1,4 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import PdfViewer from '../components/pages/PdfViewer';
+import { describe, it } from 'vitest';
 
 describe('PdfViewer', () => {
   it('should render correctly', () => {

@@ -38,7 +38,7 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ pdfUrl }) => {
         </Button>
       </div>
       <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess} className="flex flex-col gap-4">
-        {Array.from(new Array(numPages), (el, index) => (
+        {Array.from(new Array(numPages), (_, index) => (
           <Page key={`page_${index + 1}`} pageNumber={index + 1} scale={scale} className="shadow-lg border rounded-sm overflow-hidden" />
         ))}
       </Document>

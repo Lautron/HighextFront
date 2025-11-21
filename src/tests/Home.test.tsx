@@ -1,6 +1,4 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import Home from '../components/pages/Home';
+import { describe, it } from 'vitest';
 
 describe('Home', () => {
   it('should render correctly', () => {
