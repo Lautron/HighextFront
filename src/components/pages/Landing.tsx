@@ -9,19 +9,22 @@ import { Highlighter } from '@/components/ui/highlighter';
 const howItWorksSteps = [
   {
     number: "1",
-    bgColor: "bg-primary/30",
+    bgColor: "bg-primary/70",
+    shadow: "shadow-[4px_4px_0px_0px_var(--primary)]", // Primary color for shadow
     title: "Highlight",
     description: "Annotate your PDFs with your favorite colors, just like you always have.",
   },
   {
     number: "2",
-    bgColor: "bg-secondary",
+    bgColor: "bg-secondary/70",
+    shadow: "shadow-[4px_4px_0px_0px_var(--secondary)]", // Secondary color for shadow
     title: "Upload",
     description: "Upload your highlighted PDF to HighExt and let it work its magic.",
   },
   {
     number: "3",
-    bgColor: "bg-accent",
+    bgColor: "bg-accent/70",
+    shadow: "shadow-[4px_4px_0px_0px_var(--accent)]", // Accent color for shadow
     title: "Export",
     description: "Get perfectly formatted Markdown or a new PDF, categorized by your highlight colors.",
   },
@@ -29,9 +32,9 @@ const howItWorksSteps = [
 
 type HowItWorksStepProps = (typeof howItWorksSteps)[0];
 
-const HowItWorksStep: React.FC<HowItWorksStepProps> = ({ number, bgColor, title, description }) => (
+const HowItWorksStep: React.FC<HowItWorksStepProps> = ({ number, bgColor, title, description, shadow }) => (
   <div className="flex flex-col items-center text-center bg-background p-4">
-    <div className={`h-24 w-24 rounded-full ${bgColor} flex items-center justify-center mb-6 border-4 border-foreground text-3xl font-black text-foreground shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]`}>
+    <div className={`h-24 w-24 rounded-full ${bgColor} flex items-center justify-center mb-6 border-2 border-foreground text-3xl font-black text-foreground ${shadow}`}>
       {number}
     </div>
     <h3 className="text-xl font-semibold mb-2">{title}</h3>
