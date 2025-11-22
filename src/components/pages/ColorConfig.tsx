@@ -56,7 +56,7 @@ const ColorConfig: React.FC<ColorConfigProps> = ({
             </div>
             <Select
               value={colorConfig[color]}
-              onValue-change={(value) => onColorConfigChange(color, value)}
+              onValueChange={(value: string) => onColorConfigChange(color, value)}
             >
               <SelectTrigger className="w-full sm:w-[200px]">
                 <SelectValue placeholder="Select a format" />
