@@ -43,7 +43,7 @@ const ColorConfig: React.FC<ColorConfigProps> = ({
         {colors.map((color) => (
           <div
             key={color}
-            className="flex items-center justify-between p-3 border rounded-lg bg-card"
+            className="flex flex-col sm:flex-row sm:items-center justify-between p-3 border rounded-lg bg-card gap-3"
           >
             <div className="flex items-center gap-3">
               <div
@@ -56,9 +56,9 @@ const ColorConfig: React.FC<ColorConfigProps> = ({
             </div>
             <Select
               value={colorConfig[color]}
-              onValueChange={(value) => onColorConfigChange(color, value)}
+              onValue-change={(value) => onColorConfigChange(color, value)}
             >
-              <SelectTrigger className="w-[200px]">
+              <SelectTrigger className="w-full sm:w-[200px]">
                 <SelectValue placeholder="Select a format" />
               </SelectTrigger>
               <SelectContent>

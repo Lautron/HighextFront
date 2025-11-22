@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
@@ -17,6 +17,24 @@ interface PdfViewerProps {
 const PdfViewer: React.FC<PdfViewerProps> = ({ pdfUrl }) => {
   const [numPages, setNumPages] = useState<number>();
   const [scale, setScale] = useState<number>(1.0);
+  const [containerWidth, setContainerWidth] = useState<number>();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setContainerWidth(entry.contentRect.width);
+      }
+    });
+
+    resizeObserver.observe(containerRef.current);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
@@ -27,7 +45,7 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ pdfUrl }) => {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center w-full" ref={containerRef}>
       <div className="flex items-center gap-2 mb-4 sticky top-0 z-10 bg-background/80 backdrop-blur-sm p-2 rounded-full border shadow-sm">
         <Button variant="ghost" size="icon" onClick={() => setScale((s) => Math.max(0.5, s - 0.1))} disabled={scale <= 0.5} className="h-8 w-8 rounded-full">
           <ZoomOut className="h-4 w-4" />
@@ -39,7 +57,13 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ pdfUrl }) => {
       </div>
       <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess} className="flex flex-col gap-4">
         {Array.from(new Array(numPages), (_, index) => (
-          <Page key={`page_${index + 1}`} pageNumber={index + 1} scale={scale} className="shadow-lg border rounded-sm overflow-hidden" />
+          <Page 
+            key={`page_${index + 1}`} 
+            pageNumber={index + 1} 
+            scale={scale} 
+            width={containerWidth ? Math.min(containerWidth, 800) : undefined}
+            className="shadow-lg border rounded-sm overflow-hidden max-w-full" 
+          />
         ))}
       </Document>
     </div>

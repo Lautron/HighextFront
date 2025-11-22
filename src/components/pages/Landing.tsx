@@ -105,12 +105,12 @@ const Landing = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-24 text-center flex flex-col items-center max-w-4xl">
+      <section className="container mx-auto px-4 py-12 md:py-24 text-center flex flex-col items-center max-w-4xl">
 
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl mb-6 text-foreground pb-2">
+        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight lg:text-6xl mb-6 text-foreground pb-2">
           Master Your <Highlighter color="#93c5fd">PDF Highlights</Highlighter>
         </h1>
-        <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
           Stop manually copying text. Automatically extract, categorize, and format your PDF highlights into structured Markdown or clean documents based on color.
         </p>
         <div className="flex gap-4">
@@ -121,15 +121,15 @@ const Landing = () => {
       </section>
 
       {/* How it Works Section */}
-      <section className="py-20 container mx-auto px-4">
+      <section className="py-12 md:py-20 container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">From PDF to <Highlighter color="#fef08a">Summary</Highlighter> in Seconds</h2>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-4">From PDF to <Highlighter color="#fef08a">Summary</Highlighter> in Seconds</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             You focus on reading and learning. Let us handle the note-taking organization.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto relative">
           {/* Connecting Line (Desktop) */}
           <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-border -z-10" />
           {howItWorksSteps.map((step) => (
@@ -139,10 +139,10 @@ const Landing = () => {
       </section>
 
       {/* Features Section */}
-      <section className="bg-muted/50 py-20 border-y border-border">
+      <section className="bg-muted/50 py-12 md:py-20 border-y border-border">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12 tracking-tight">Why use <Highlighter action="underline" color="#fdba74">HighExt?</Highlighter></h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 tracking-tight">Why use <Highlighter action="underline" color="#fdba74">HighExt?</Highlighter></h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature) => (
               <FeatureCard key={feature.title} {...feature} />
             ))}
@@ -151,9 +151,9 @@ const Landing = () => {
       </section>
 
       {/* Use Cases Section */}
-      <section className="py-24 container mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold mb-12 tracking-tight">Built for Knowledge Workers</h2>
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
+      <section className="py-12 md:py-24 container mx-auto px-4 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold mb-12 tracking-tight">Built for Knowledge Workers</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
           {useCases.map((useCase) => (
             <UseCaseCard key={useCase.id} title={useCase.title} description={useCase.description} className={useCase.className} />
           ))}
